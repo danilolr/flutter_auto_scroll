@@ -25,15 +25,7 @@ class MyHomePage extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Expanded(
-            child: Row(
-              children: <Widget>[
-                Expanded(child: MainAreaWidget(), flex: 5),
-                Expanded(
-                  child: NewsWidget(),
-                  flex: 1,
-                )
-              ],
-            ),
+            child: MainAreaWidget(),
             flex: 5,
           ),
           Expanded(
@@ -59,7 +51,6 @@ class _EventsListWidgetState extends State<EventsListWidget> {
   initState() {
     super.initState();
     Observable.periodic(Duration(milliseconds: 100)).listen((val) {
-      print(val);
       q = q + 10;
       _scrollController.animateTo(
         q,
@@ -85,7 +76,7 @@ class _EventsListWidgetState extends State<EventsListWidget> {
               padding: const EdgeInsets.all(8.0),
               child: Card(
                 child: Center(
-                  child: Text("Event ${i + 1}"),
+                  child: Text("News ${i + 1}"),
                 ),
               ),
             ),
@@ -93,27 +84,6 @@ class _EventsListWidgetState extends State<EventsListWidget> {
         },
       ),
     );
-  }
-}
-
-class NewsWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(itemBuilder: (BuildContext context, int index) {
-      final i = index % 30;
-      return SizedBox(
-        width: 200,
-        height: 100,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Card(
-            child: Center(
-              child: Text("News $i"),
-            ),
-          ),
-        ),
-      );
-    });
   }
 }
 
